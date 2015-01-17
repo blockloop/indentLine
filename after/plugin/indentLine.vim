@@ -11,8 +11,8 @@ endif
 let g:indentLine_loaded = 1
 
 
-let g:indentLine_char = get(g:,'indentLine_char',(&encoding is# "utf-8" && &term isnot# "linux" ? '¦' : '|'))
-let g:indentLine_first_char = get(g:,'indentLine_first_char',(&encoding is# "utf-8" && &term isnot# "linux"  ? '¦' : '|'))
+let g:indentLine_char = get(g:,'indentLine_char',(&encoding is# "utf-8" && &term isnot# "linux" ? '┆' : '┆'))
+let g:indentLine_first_char = get(g:,'indentLine_first_char',(&encoding is# "utf-8" && &term isnot# "linux"  ? '┆' : '┆'))
 let g:indentLine_indentLevel = get(g:,'indentLine_indentLevel',10)
 let g:indentLine_enabled = get(g:,'indentLine_enabled',1)
 let g:indentLine_fileType = get(g:,'indentLine_fileType',[])
@@ -79,7 +79,7 @@ function! s:SetIndentLine()
         execute 'syntax match IndentLine /\t\zs / contained conceal cchar=' . g:indentLine_char
     else
         let pattern = line('$') < g:indentLine_maxLines ? 'v' : 'c'
-        for i in range(space+1, space * g:indentLine_indentLevel + 1, space)
+        for i in range(space, space * g:indentLine_indentLevel, space)
             execute 'syntax match IndentLine /\%(^\s\+\)\@<=\%'.i.pattern.' / containedin=ALL conceal cchar=' . g:indentLine_char
         endfor
     endif
